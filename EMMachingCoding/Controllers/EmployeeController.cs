@@ -1,4 +1,5 @@
 ﻿using EMMachingCoding.Domain;
+using EMMachingCoding.Filters;
 using EMMachingCoding.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ namespace EMMachingCoding.Controllers
 {
     [ApiController]
     [Route("api/employee")]
+    [ServiceFilter(typeof(AuthorizationFilter))]  // controller level or you can add at action level below
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;

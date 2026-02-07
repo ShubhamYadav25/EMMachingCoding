@@ -1,3 +1,4 @@
+using EMMachingCoding.Filters;
 using EMMachingCoding.Infrastructure;
 using EMMachingCoding.Middleware;
 using EMMachingCoding.Repositories;
@@ -27,6 +28,7 @@ builder.Services.AddCors(options =>
         builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
 
+builder.Services.AddScoped<AuthorizationFilter>();
 builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
