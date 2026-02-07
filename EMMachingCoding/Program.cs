@@ -1,4 +1,5 @@
 using EMMachingCoding.Infrastructure;
+using EMMachingCoding.Middleware;
 using EMMachingCoding.Repositories;
 using EMMachingCoding.Services;
 using Microsoft.EntityFrameworkCore;
@@ -43,9 +44,27 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// or register middleware by extension method by 
+/**
+
+public static class MiddlewareExtensions
+{
+    public static IApplicationBuilder UseMyMiddleware(this IApplicationBuilder app)
+    {
+        return app.UseMiddleware<MyMiddleware>();
+    }
+} 
+
+app.UseMyMiddleware();
+
+ */
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+// Middleware example
+app.UseMiddleware<LoggingMiddleware>();
 
 app.MapControllers();
 
